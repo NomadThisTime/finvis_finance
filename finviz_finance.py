@@ -75,13 +75,20 @@ for i in range(0, len(loaded_tickers)):
                             loaded_tickers[i].get('Beta', 'N/A')
                             ))
 
+### format tickers
+
+all_tickers_formatted = []
+for item in all_ticker_data:
+    ftick = item.replace(".",",")
+    all_tickers_formatted.append(ftick)
+
 ### put data into worksheet
 
 i = 0
 
 for col in ws.iter_cols(min_row=2, max_row=get_maximum_rows(), min_col=2, max_col=get_maximum_cols()):
     for cell in col:
-        cell.value = all_ticker_data[i]
+        cell.value = all_tickers_formatted[i]
         i += 1
 
 ### save workbook
